@@ -21,12 +21,6 @@ jobs:
     if: ${{ needs.changes.outputs.paths == 'true' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: dorny/paths-filter@v2
-        id: changes
-        with:
-          filters: |
-            src:
-              - 'src/**'
       - uses: actions/checkout@v3
       - name: Do build
         run: 'echo "Doing a real build"'
