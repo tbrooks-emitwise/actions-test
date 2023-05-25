@@ -6,7 +6,7 @@ on:
       - "path2/**"
 jobs:
   build:
-    name: Real build
+    name: Multi real build
     runs-on: ubuntu-latest
     steps:
       - name: Do build
