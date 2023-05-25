@@ -1,0 +1,14 @@
+name: required
+on:
+  pull_request:
+    paths:
+      - "src/**"
+jobs:
+  build:
+    name: Real build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Do build
+        run: 'echo "Doing a real build"'
+
