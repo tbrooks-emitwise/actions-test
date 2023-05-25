@@ -1,12 +1,25 @@
 name: MultiRequired
-on:
-  pull_request:
-    paths:
-      - "path1/**"
-      - "path2/**"
+on: [pull_request]
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      paths: ${{ steps.filter.outputs.paths }}
+    steps:
+    - uses: dorny/paths-filter@v2
+      id: filter
+      with:
+        filters: |
+          paths:
+            - "path1/**"
+            - "path2/**"
+
   build:
     name: Multi real build
+    needs: changes
+    if: ${{ needs.changes.outputs.paths == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

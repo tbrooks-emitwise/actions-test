@@ -1,13 +1,32 @@
 name: required
-on:
-  pull_request:
-    paths:
-      - "src/**"
+on: [pull_request]
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      paths: ${{ steps.filter.outputs.paths }}
+    steps:
+    - uses: dorny/paths-filter@v2
+      id: filter
+      with:
+        filters: |
+          paths:
+            - 'src/**'
+
   build:
     name: Real build
+    needs: changes
+    if: ${{ needs.changes.outputs.paths == 'true' }}
     runs-on: ubuntu-latest
     steps:
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            src:
+              - 'src/**'
       - uses: actions/checkout@v3
       - name: Do build
         run: 'echo "Doing a real build"'
