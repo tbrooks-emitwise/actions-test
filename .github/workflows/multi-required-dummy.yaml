@@ -1,0 +1,14 @@
+name: MultiRequired
+on:
+  pull_request:
+    paths-ignore:
+      - "path1/**"
+      - "path2/**"
+jobs:
+  build:
+    name: Real build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Do build
+        run: 'echo "Nothing to do"'
+

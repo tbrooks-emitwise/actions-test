@@ -1,0 +1,15 @@
+name: MultiRequired
+on:
+  pull_request:
+    paths:
+      - "path1/**"
+      - "path2/**"
+jobs:
+  build:
+    name: Real build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Do build
+        run: 'echo "Doing a real build"'
+
