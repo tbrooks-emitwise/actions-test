@@ -1,4 +1,4 @@
-name: required
+name: matrix
 on: [pull_request]
 jobs:
   changes:
@@ -18,11 +18,11 @@ jobs:
   build:
     name: Matrix
     needs: changes
-    if: ${{ needs.changes.outputs.paths == 'true' }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
         environment: [dev, staging]
+    if: ${{ needs.changes.outputs.paths == 'true' }}
     steps:
       - uses: actions/checkout@v3
       - name: Do build
