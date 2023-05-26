@@ -22,8 +22,8 @@ jobs:
     strategy:
       matrix:
         environment: [dev, staging]
-    if: ${{ needs.changes.outputs.paths == 'true' }}
     steps:
+      - if: ${{ needs.changes.outputs.paths == 'true' }}
       - uses: actions/checkout@v3
       - name: Do build
         run: 'echo "Doing a real build"'
