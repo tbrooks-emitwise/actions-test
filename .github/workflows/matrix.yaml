@@ -24,7 +24,7 @@ jobs:
         environment: [dev, staging]
     steps:
       - uses: actions/checkout@v3
-      - if: ${{ needs.changes.outputs.paths == 'true' }}
+        if: ${{ needs.changes.outputs.paths == 'true' }}
       - name: Do build
         run: 'echo "Doing a real build"'
 
