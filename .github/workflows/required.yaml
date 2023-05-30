@@ -33,21 +33,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Do test
-        run: exit 1
+        run: 'echo "Test passed"'
 
   complete:
     name: required
     needs: [first, second]
     if: ${{ always() }}
     runs-on: ubuntu-latest
-    env:
-      FAIL: ${{ failure() }}
-      SUCCESS: ${{ success() }}
     steps:
       - name: Failed
-        if: ${{ env.FAIL }}
+        if: $${{ contains(needs.*.result, 'failure')}}
         run: exit 1
       - name: Success
-        if: ${{ env.SUCCESS }}
         run: 'echo "All good"'
-
