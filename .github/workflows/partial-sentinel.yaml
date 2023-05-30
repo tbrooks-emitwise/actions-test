@@ -10,7 +10,7 @@ on:
 jobs:
   sentinel:
     name: "${{github.workflow}} Sentinel"
-    needs: ${{ fromJson(inputs.required-jobs) }}
+    needs: ${{ fromJson(github.event.inputs.required-jobs) }}
     if: ${{ success() || failure() }}
     runs-on: ubuntu-latest
     steps:
