@@ -1,0 +1,22 @@
+name: Sentinel
+
+on:
+  workflow_call:
+    inputs:
+      required-jobs:
+        required: true
+        type: string
+
+jobs:
+  sentinel:
+    name: "${{github.workflow}} Sentinel"
+    runs-on: ubuntu-latest
+    needs: ${{ fromJson(inputs.required-jobs) }}
+    if: ${{ success() || failure() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Failed
+        if: ${{ contains(needs.*.result, 'failure')}}
+        run: exit 1
+      - name: Success
+        run: 'echo "All good"'

@@ -36,6 +36,6 @@ jobs:
         run: 'echo "Testing"'
 
   sentinel:
-    uses: tbrooks-emitwise/actions-test/.github/workflows/partial-sentinel.yaml@main
+    uses: ./.github/workflows/partial-sentinel.yaml
     with:
       required-jobs: "['first', 'second']"
