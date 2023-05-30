@@ -38,8 +38,9 @@ jobs:
   complete:
     name: required
     needs: [first, second]
+    if: {{ always() }}
     runs-on: ubuntu-latest
     steps:
       - name: All done
-        run: 'echo "All required jobs done"'
+        run: if ! {{ success() }} ; then exit 1
 
