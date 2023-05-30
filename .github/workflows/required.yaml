@@ -38,9 +38,13 @@ jobs:
   complete:
     name: required
     needs: [first, second]
-    if: ${{ failure() }}
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
       - name: Failed
+        if: ${{ failure() }}
         run: exit 1
+      - name: Success
+        if: ${{ success() }}
+        run: 'echo "All good"'
 
