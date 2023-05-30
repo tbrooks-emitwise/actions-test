@@ -33,7 +33,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Do test
-        run: 'echo "Doing a real test"'
+        run: exit 1
 
   complete:
     name: required
