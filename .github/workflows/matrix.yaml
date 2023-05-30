@@ -25,8 +25,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         if: ${{ needs.changes.outputs.paths == 'true' }}
-      - name: Do build
-        run: 'echo "Doing a real build"'
+      - name: Fail
+        if: ${{ matrix.environment == 'dev' }}
+        run: exit 1
+      - name: Pass
+        run: 'echo "Running build"'
 
   complete:
     name: required
@@ -39,4 +42,3 @@ jobs:
         run: exit 1
       - name: Success
         run: 'echo "All good"'
-        
