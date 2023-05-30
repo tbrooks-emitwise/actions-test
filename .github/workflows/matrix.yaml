@@ -32,6 +32,6 @@ jobs:
         run: 'echo "Running build"'
 
   sentinel:
-    uses: ./.github/workflows/partial-sentinel.yaml
+    uses: tbrooks-emitwise/actions-test/.github/workflows/partial-sentinel.yaml
     with:
       required-jobs: "['build']"
