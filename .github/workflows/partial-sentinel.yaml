@@ -10,7 +10,6 @@ on:
 jobs:
   sentinel:
     name: "${{github.workflow}} Sentinel"
-    runs-on: ubuntu-latest
     needs: ${{ fromJson(inputs.required-jobs) }}
     if: ${{ success() || failure() }}
     runs-on: ubuntu-latest
