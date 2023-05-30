@@ -38,7 +38,7 @@ jobs:
   complete:
     name: required
     needs: [first, second]
-    if: {{ always() }}
+    if: always()
     runs-on: ubuntu-latest
     steps:
       - name: All done
