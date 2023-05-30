@@ -28,3 +28,15 @@ jobs:
       - name: Do build
         run: 'echo "Doing a real build"'
 
+  complete:
+    name: required
+    needs: [build]
+    if: ${{ success() || failure() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Failed
+        if: ${{ contains(needs.*.result, 'failure')}}
+        run: exit 1
+      - name: Success
+        run: 'echo "All good"'
+        
