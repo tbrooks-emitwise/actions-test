@@ -38,7 +38,7 @@ jobs:
   complete:
     name: required
     needs: [first, second]
-    if: ${{ !success() }}
+    if: ${{ failure() }}
     runs-on: ubuntu-latest
     steps:
       - name: Failed
