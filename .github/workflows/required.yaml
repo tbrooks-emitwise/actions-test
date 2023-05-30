@@ -40,11 +40,14 @@ jobs:
     needs: [first, second]
     if: ${{ always() }}
     runs-on: ubuntu-latest
+    env:
+      FAIL: ${{ failure() }}
+      SUCCESS: ${{ success() }}
     steps:
       - name: Failed
-        if: ${{ failure() }}
+        if: ${{ env.FAIL }}
         run: exit 1
       - name: Success
-        if: ${{ success() }}
+        if: ${{ env.SUCCESS }}
         run: 'echo "All good"'
 
