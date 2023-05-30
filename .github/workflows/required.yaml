@@ -42,5 +42,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: All done
-        run: if ! {{ success() }} ; then exit 1
+        run: if ! ${{ success() }} ; then exit 1
 
