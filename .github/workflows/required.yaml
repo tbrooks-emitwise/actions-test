@@ -35,14 +35,7 @@ jobs:
       - name: Do test
         run: 'echo "Testing"'
 
-  complete:
-    name: required
-    needs: [first, second]
-    if: ${{ success() || failure() }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Failed
-        if: ${{ contains(needs.*.result, 'failure')}}
-        run: exit 1
-      - name: Success
-        run: 'echo "All good"'
+  sentinel:
+    uses: ./.github/workflows/partial-sentinel.yaml
+    with:
+      required-jobs: "['build']"
