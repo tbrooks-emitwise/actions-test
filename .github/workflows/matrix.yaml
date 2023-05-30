@@ -18,13 +18,13 @@ jobs:
   build:
     name: Matrix
     needs: changes
+    if: ${{ needs.changes.outputs.paths == 'true' }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
         environment: [dev, staging]
     steps:
       - uses: actions/checkout@v3
-        if: ${{ needs.changes.outputs.paths == 'true' }}
       - name: Fail
         if: ${{ matrix.environment == 'dev' }}
         run: exit 1
