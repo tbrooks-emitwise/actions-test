@@ -1,16 +1,9 @@
 name: Sentinel
-
-on:
-  workflow_call:
-    inputs:
-      required-jobs:
-        required: true
-        type: string
+on: [workflow_call]
 
 jobs:
   sentinel:
     name: "${{github.workflow}} Sentinel"
-    needs: ${{ fromJson(github.event.inputs.required-jobs) }}
     if: ${{ success() || failure() }}
     runs-on: ubuntu-latest
     steps:

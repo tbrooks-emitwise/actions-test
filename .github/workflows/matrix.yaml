@@ -33,5 +33,4 @@ jobs:
 
   sentinel:
     uses: ./.github/workflows/partial-sentinel.yaml
-    with:
-      required-jobs: "['build']"
+    needs: [build]
