@@ -4,7 +4,6 @@ on: [workflow_call]
 jobs:
   sentinel:
     name: "${{github.workflow}} Sentinel"
-    if: ${{ success() || failure() }}
     runs-on: ubuntu-latest
     steps:
       - name: Failed

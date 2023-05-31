@@ -38,3 +38,4 @@ jobs:
   sentinel:
     uses: ./.github/workflows/partial-sentinel.yaml
     needs: [first, second]
+    if: ${{ success() || failure() }}
