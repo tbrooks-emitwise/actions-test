@@ -35,3 +35,5 @@ jobs:
     uses: ./.github/workflows/partial-sentinel.yaml
     needs: [build]
     if: ${{ success() || failure() }}
+    with:
+      failed-jobs: ${{ contains(needs.*.result, 'failure')}}
