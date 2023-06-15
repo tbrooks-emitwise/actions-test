@@ -26,3 +26,10 @@ jobs:
       - name: Do build
         run: 'echo "Doing a real build"'
 
+  sentinel:
+    name: Multi Sentinel
+    uses: ./.github/workflows/partial-sentinel.yaml
+    needs: [build]
+    if: ${{ success() || failure() }}
+    with:
+      failed-jobs: ${{ contains(needs.*.result, 'failure')}}

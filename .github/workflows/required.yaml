@@ -36,6 +36,7 @@ jobs:
         run: 'echo "Testing"'
 
   sentinel:
+    name: Required Sentinel
     uses: ./.github/workflows/partial-sentinel.yaml
     needs: [first, second]
     if: ${{ success() || failure() }}

@@ -8,7 +8,6 @@ on:
 
 jobs:
   sentinel:
-    name: "${{github.workflow}} Sentinel"
     runs-on: ubuntu-latest
     steps:
       - name: Failed

@@ -32,6 +32,7 @@ jobs:
         run: 'echo "Running build"'
 
   sentinel:
+    name: Matrix Sentinel
     uses: ./.github/workflows/partial-sentinel.yaml
     needs: [build]
     if: ${{ success() || failure() }}
