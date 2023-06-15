@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Fail
-        if: ${{ matrix.environment == 'prod' }}
+        if: ${{ matrix.environment == 'dev' }}
         run: exit 1
       - name: Pass
         run: 'echo "Running build"'
