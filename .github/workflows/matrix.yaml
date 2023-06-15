@@ -33,8 +33,12 @@ jobs:
 
   sentinel:
     name: Matrix Sentinel
-    uses: ./.github/workflows/partial-sentinel.yaml
     needs: [build]
     if: ${{ success() || failure() }}
-    with:
-      failed-jobs: ${{ contains(needs.*.result, 'failure')}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Failed
+        if: ${{ contains(needs.*.result, 'failure')}}
+        run: exit 1
+      - name: Success
+        run: 'echo "All good"'
