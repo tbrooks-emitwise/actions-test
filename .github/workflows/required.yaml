@@ -37,8 +37,12 @@ jobs:
 
   sentinel:
     name: Required Sentinel
-    uses: ./.github/workflows/partial-sentinel.yaml
     needs: [first, second]
     if: ${{ success() || failure() }}
-    with:
-      failed-jobs: ${{ contains(needs.*.result, 'failure')}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Failed
+        if: ${{ contains(needs.*.result, 'failure')}}
+        run: exit 1
+      - name: Success
+        run: 'echo "All good"'
