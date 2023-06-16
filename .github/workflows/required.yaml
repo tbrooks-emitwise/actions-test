@@ -36,7 +36,7 @@ jobs:
         run: 'echo "Testing"'
 
   sentinel:
-    name: ${{ github.workflow }} Sentinel
+    name: "${{ github.workflow }} Sentinel"
     needs: [first, second]
     if: ${{ success() || failure() }}
     runs-on: ubuntu-latest
